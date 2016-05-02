@@ -39,12 +39,14 @@ startup time of new clients in this scenario.
 
 %prep
 %setup -q
+# Remove additional CFLAGS added when enabling DEBUG
+sed -i '/+= -O0 -g/d' utils.mk
 
 %build
-export CFLAGS=${RPM_OPT_FLAGS}
 make %{?_smp_mflags} \
+    DEBUG=1 \
     NV_VERBOSE=1 \
-    STRIP_CMD="true"
+    PREFIX=%{_prefix}
 
 %install
 %make_install INSTALL="install -p" PREFIX=%{_prefix}
@@ -116,6 +118,7 @@ fi
 %changelog
 * Mon May 02 2016 Simone Caronni <negativo17@gmail.com> - 2:364.19-1
 - Update to 364.19.
+- Update make parameters.
 
 * Wed Mar 30 2016 Simone Caronni <negativo17@gmail.com> - 2:361.42-1
 - Update to 361.42.
