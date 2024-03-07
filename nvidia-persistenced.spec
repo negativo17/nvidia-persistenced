@@ -29,7 +29,7 @@ releasing device state when the device is not in use. This can improve the
 startup time of new clients in this scenario.
 
 %prep
-%setup -q
+%autosetup
 # Remove additional CFLAGS added when enabling DEBUG
 sed -i -e '/+= -O0 -g/d' utils.mk
 
