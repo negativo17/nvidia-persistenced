@@ -1,6 +1,6 @@
 Name:           nvidia-persistenced
 Version:        550.54.14
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A daemon to maintain persistent software state in the NVIDIA driver
 Epoch:          3
 License:        GPLv2+
@@ -54,13 +54,6 @@ mkdir -p %{buildroot}%{_sharedstatedir}/%{name}
 # Systemd unit files
 install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 
-%pre
-getent group %{name} >/dev/null || groupadd -r %{name}
-getent passwd %{name} >/dev/null || \
-    useradd -r -g %{name} -d /var/run/%{name} -s /sbin/nologin \
-    -c "NVIDIA persistent software state" %{name}
-exit 0
-
 %post
 %systemd_post %{name}.service
 
@@ -75,9 +68,12 @@ exit 0
 %{_mandir}/man1/%{name}.1.*
 %{_sbindir}/%{name}
 %{_unitdir}/%{name}.service
-%attr(750,%{name},%{name}) %{_sharedstatedir}/%{name}
+%{_sharedstatedir}/%{name}
 
 %changelog
+* Thu Mar 07 2024 Simone Caronni <negativo17@gmail.com> - 3:550.54.14-2
+- Run nvidia-persistenced as root as Nvidia does.
+
 * Sun Mar 03 2024 Simone Caronni <negativo17@gmail.com> - 3:550.54.14-1
 - Update to 550.54.14.
 
