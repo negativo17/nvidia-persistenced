@@ -1,11 +1,11 @@
 Name:           nvidia-persistenced
 Version:        550.54.14
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        A daemon to maintain persistent software state in the NVIDIA driver
 Epoch:          3
 License:        GPLv2+
 URL:            http://www.nvidia.com/object/unix.html
-ExclusiveArch:  %{ix86} x86_64
+ExclusiveArch:  %{ix86} x86_64 ppc64le aarch64
 
 Source0:        https://github.com/NVIDIA/%{name}/archive/refs/tags/%{version}.tar.gz#/%{name}-%{version}.tar.gz
 Source1:        %{name}.service
@@ -71,6 +71,9 @@ install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 %{_sharedstatedir}/%{name}
 
 %changelog
+* Sat Mar 09 2024 Simone Caronni <negativo17@gmail.com> - 3:550.54.14-3
+- Enable aarch64.
+
 * Thu Mar 07 2024 Simone Caronni <negativo17@gmail.com> - 3:550.54.14-2
 - Run nvidia-persistenced as root as Nvidia does.
 
