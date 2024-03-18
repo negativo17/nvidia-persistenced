@@ -1,6 +1,6 @@
 Name:           nvidia-persistenced
 Version:        550.54.14
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        A daemon to maintain persistent software state in the NVIDIA driver
 Epoch:          3
 License:        GPLv2+
@@ -19,7 +19,6 @@ BuildRequires:      systemd-devel
 Requires(post):     systemd
 Requires(preun):    systemd
 Requires(postun):   systemd
-Requires(pre):      shadow-utils
 Requires:           nvidia-driver-cuda = %{?epoch}:%{version}
 
 %description
@@ -71,6 +70,9 @@ install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 %{_sharedstatedir}/%{name}
 
 %changelog
+* Mon Mar 18 2024 Simone Caronni <negativo17@gmail.com> - 3:550.54.14-4
+- Clean up build requirements.
+
 * Sat Mar 09 2024 Simone Caronni <negativo17@gmail.com> - 3:550.54.14-3
 - Enable aarch64.
 
