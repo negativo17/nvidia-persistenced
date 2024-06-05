@@ -1,6 +1,6 @@
 Name:           nvidia-persistenced
-Version:        550.78
-Release:        2%{?dist}
+Version:        550.90.07
+Release:        1%{?dist}
 Summary:        A daemon to maintain persistent software state in the NVIDIA driver
 Epoch:          3
 License:        GPLv2+
@@ -70,6 +70,9 @@ install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 %{_sharedstatedir}/%{name}
 
 %changelog
+* Wed Jun 05 2024 Simone Caronni <negativo17@gmail.com> - 3:550.90.07-1
+- Update to 550.90.07.
+
 * Tue Apr 30 2024 Simone Caronni <negativo17@gmail.com> - 3:550.78-2
 - Switch to Nvidia provided tarball.
 
