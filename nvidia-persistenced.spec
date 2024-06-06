@@ -1,5 +1,5 @@
 Name:           nvidia-persistenced
-Version:        555.42.02
+Version:        555.52.04
 Release:        1%{?dist}
 Summary:        A daemon to maintain persistent software state in the NVIDIA driver
 Epoch:          3
@@ -70,6 +70,9 @@ install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 %{_sharedstatedir}/%{name}
 
 %changelog
+* Thu Jun 06 2024 Simone Caronni <negativo17@gmail.com> - 3:555.52.04-1
+- Update to 555.52.04.
+
 * Wed May 22 2024 Simone Caronni <negativo17@gmail.com> - 3:555.42.02-1
 - Update to 555.42.02.
 
