@@ -19,7 +19,7 @@ BuildRequires:      systemd-devel
 Requires(post):     systemd
 Requires(preun):    systemd
 Requires(postun):   systemd
-Requires:           nvidia-driver-cuda = %{?epoch}:%{version}
+Requires:           libnvidia-cfg%{?_isa} >= %{?epoch:%{epoch}:}%{version}
 
 %description
 The %{name} utility is used to enable persistent software state in the NVIDIA
@@ -72,6 +72,7 @@ install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 %changelog
 * Tue Jul 02 2024 Simone Caronni <negativo17@gmail.com> - 3:555.58.02-1
 - Update to 555.58.02.
+- Require dynamically loaded library libnvidia-cfg.
 
 * Thu Jun 27 2024 Simone Caronni <negativo17@gmail.com> - 3:555.58-1
 - Update to 555.58.
