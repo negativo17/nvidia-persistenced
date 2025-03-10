@@ -1,6 +1,6 @@
 Name:           nvidia-persistenced
 Version:        570.124.04
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A daemon to maintain persistent software state in the NVIDIA driver
 Epoch:          3
 License:        GPLv2+
@@ -47,7 +47,6 @@ make %{?_smp_mflags} \
     PREFIX=%{_prefix} \
     STRIP_CMD=true
 
-mv %{buildroot}%{_bindir} %{buildroot}%{_sbindir}
 mkdir -p %{buildroot}%{_sharedstatedir}/%{name}
 
 # Systemd unit files
@@ -65,11 +64,14 @@ install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 %files
 %license COPYING
 %{_mandir}/man1/%{name}.1.*
-%{_sbindir}/%{name}
+%{_bindir}/%{name}
 %{_unitdir}/%{name}.service
 %{_sharedstatedir}/%{name}
 
 %changelog
+* Mon Mar 10 2025 Simone Caronni <negativo17@gmail.com> - 3:570.124.04-2
+- Move nvidia-persistenced binary to _bindir (as per original sources).
+
 * Fri Feb 28 2025 Simone Caronni <negativo17@gmail.com> - 3:570.124.04-1
 - Update to 570.124.04.
 
