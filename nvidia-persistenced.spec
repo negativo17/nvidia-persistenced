@@ -1,6 +1,6 @@
 Name:           nvidia-persistenced
-Version:        570.124.04
-Release:        2%{?dist}
+Version:        570.133.07
+Release:        1%{?dist}
 Summary:        A daemon to maintain persistent software state in the NVIDIA driver
 Epoch:          3
 License:        GPLv2+
@@ -69,6 +69,9 @@ install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 %{_sharedstatedir}/%{name}
 
 %changelog
+* Wed Mar 19 2025 Simone Caronni <negativo17@gmail.com> - 3:570.133.07-1
+- Update to 570.133.07.
+
 * Mon Mar 10 2025 Simone Caronni <negativo17@gmail.com> - 3:570.124.04-2
 - Move nvidia-persistenced binary to _bindir (as per original sources).
 
