@@ -1,5 +1,5 @@
 Name:           nvidia-persistenced
-Version:        570.144
+Version:        575.51.02
 Release:        1%{?dist}
 Summary:        A daemon to maintain persistent software state in the NVIDIA driver
 Epoch:          3
@@ -19,6 +19,7 @@ BuildRequires:      systemd-devel
 Requires(post):     systemd
 Requires(preun):    systemd
 Requires(postun):   systemd
+# dlopened:
 Requires:           libnvidia-cfg%{?_isa} >= %{?epoch:%{epoch}:}%{version}
 
 %description
@@ -69,6 +70,9 @@ install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 %{_sharedstatedir}/%{name}
 
 %changelog
+* Tue Apr 22 2025 Simone Caronni <negativo17@gmail.com> - 3:575.51.02-1
+- Update to 575.51.02.
+
 * Tue Apr 22 2025 Simone Caronni <negativo17@gmail.com> - 3:570.144-1
 - Update to 570.144.
 
