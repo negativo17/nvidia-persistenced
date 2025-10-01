@@ -13,9 +13,9 @@ Source1:        %{name}.service
 BuildRequires:  gcc
 BuildRequires:  libtirpc-devel
 BuildRequires:  m4
+BuildRequires:  systemd-rpm-macros
 
-# For Fedora systemd-rpm-macros would be enough:
-BuildRequires:      systemd-devel
+Requires(pre):      shadow-utils
 Requires(post):     systemd
 Requires(preun):    systemd
 Requires(postun):   systemd
@@ -47,10 +47,15 @@ make %{?_smp_mflags} \
     PREFIX=%{_prefix} \
     STRIP_CMD=true
 
-mkdir -p %{buildroot}%{_sharedstatedir}/%{name}
-
 # Systemd unit files
 install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
+
+%pre
+getent group %{name} >/dev/null || groupadd -r %{name}
+getent passwd %{name} >/dev/null || \
+    useradd -r -g %{name} -d /run/%{name} -s /sbin/nologin \
+    -c "NVIDIA Persistence Daemon" %{name}
+exit 0
 
 %post
 %systemd_post %{name}.service
@@ -66,11 +71,14 @@ install -p -m 644 -D %{SOURCE1} %{buildroot}%{_unitdir}/%{name}.service
 %{_mandir}/man1/%{name}.1.*
 %{_bindir}/%{name}
 %{_unitdir}/%{name}.service
-%{_sharedstatedir}/%{name}
 
 %changelog
 * Wed Oct 01 2025 Simone Caronni <negativo17@gmail.com> - 3:580.95.05-1
-- Update to 580.95.05.
+- Update to 580.95.05, rework configuration:
+  - Run as user nvidia-persistenced, as described in the guide.
+  - Allow user to manage the /run/nvidia-persistenced directory.
+  - Drop /var/lib/nvidia-persistenced folder.
+  - Fix warning about /var/run paths being used.
 
 * Thu Sep 11 2025 Simone Caronni <negativo17@gmail.com> - 3:580.82.09-1
 - Update to 580.82.09.
