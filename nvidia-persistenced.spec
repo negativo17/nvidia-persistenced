@@ -1,6 +1,6 @@
 Name:           nvidia-persistenced
 Version:        615.71.09
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        A daemon to maintain persistent software state in the NVIDIA driver
 Epoch:          3
 License:        GPLv2+
@@ -71,6 +71,9 @@ install -p -D -m 0644 %{SOURCE2} %{buildroot}%{_sysusersdir}/%{name}.conf
 %{_sysusersdir}/%{name}.conf
 
 %changelog
+* Tue Sep 22 2026 Simone Caronni <negativo17@gmail.com> - 3:615.71.09-2
+- Import changes from Anatase (https://anatase.org/).
+
 * Thu Sep 10 2026 Simone Caronni <negativo17@gmail.com> - 3:615.71.09-1
 - Update to 615.71.09.
 
