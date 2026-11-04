@@ -1,5 +1,5 @@
 Name:           nvidia-persistenced
-Version:        615.78.08
+Version:        620.70.06
 Release:        1%{?dist}
 Summary:        A daemon to maintain persistent software state in the NVIDIA driver
 Epoch:          3
@@ -76,6 +76,9 @@ exit 0
 %{_unitdir}/%{name}.service
 
 %changelog
+* Wed Nov 04 2026 Simone Caronni <negativo17@gmail.com> - 3:620.70.06-1
+- Update to 620.70.06.
+
 * Wed Oct 07 2026 Simone Caronni <negativo17@gmail.com> - 3:615.78.08-1
 - Update to 615.78.08.
 
